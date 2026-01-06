@@ -1,456 +1,612 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prajval Kumar Murali, Ph.D.</title>
     <meta name="author" content="Prajval Murali">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <meta name="google-site-verification" content="ZvkJKAtKTqWNzI9OJ-WDKIc9MSRyhPTvACMnStdR9aE"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #1a1f3a;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --text-primary: #e4e7f0;
+            --text-secondary: #9ca3af;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+            z-index: -1;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 30px) scale(1.1); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: center;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        .expertise {
+            margin-top: 1.5rem;
+        }
+        
+        .expertise strong {
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        
+        .tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+        
+        .hero-image {
+            position: relative;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            border: 3px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .hero-image img:hover {
+            border-color: var(--accent-blue);
+            transform: scale(1.02);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .social-btn:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Awards Section */
+        .awards-section {
+            margin: 4rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 2px;
+        }
+        
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .award-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .award-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
+        
+        .award-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        /* Research Sections */
+        .research-section {
+            margin: 4rem 0;
+        }
+        
+        .paper-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .paper-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+        }
+        
+        .paper-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .paper-image img {
+            max-width: 100%;
+            max-height: 180px;
+            border-radius: 10px;
+            object-fit: contain;
+        }
+        
+        .paper-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        .paper-authors {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .paper-venue {
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .paper-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .paper-link {
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 8px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .paper-link:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .award-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .disclaimer {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--accent-purple);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 2rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .paper-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
-
 <body>
-<table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-    <tbody>
-    <tr style="padding:0px">
-        <td style="padding:0px">
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr style="padding:0px">
-                    <td style="padding:2.5%;width:63%;vertical-align:middle">
-                        <p style="text-align:center">
-                            <name>Prajval Kumar Murali, Ph.D.</name>
-                        </p>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Prajval Kumar Murali, Ph.D.</h1>
+                <p>I am an R&D Scientist at the Zeiss Group, specializing in AI-driven computer vision and robotic perception technologies. My main focus is developing state-of-the-art AI models for business use-cases at Zeiss.</p>
+                <p>Previously, I worked at the BMW Group on developing novel AI algorithms for multi-modal perception from various sensors such as visual cameras and tactile sensors for robotic manipulation. </p>
+                <p>Prior to joining BMW, I worked as a robotics engineer at the Italian Institute of Technology in Genova, Italy. Here, I worked in a joint lab with Danieli Automation towards robotization of a safety-critical task in the steel industry. </p>
+                <p>I hold Ph.D. and M.S. degrees in AI and Robotics from University of Glasgow, Scotland and University of Genova, Italy respectively. I also have a B.Tech degree from National Institute of Technology Trichy, India.</p>
+                
+                <div class="expertise">
+                    <strong>Technical Expertise</strong>
+                    <div class="expertise-tags">
+                        <span class="tag">Robotics</span>
+                        <span class="tag">AI & Deep Learning</span>
+                        <span class="tag">3D Computer Vision</span>
+                        <span class="tag">Tactile Sensing</span>
+                        <span class="tag">Generative AI</span>
+                        <span class="tag">Foundation Models</span>
+                    </div>
+                </div>
+                
+                <div class="expertise">
+                    <strong>Programming Expertise</strong>
+                    <div class="expertise-tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Swift</span>
+                        <span class="tag">ROS</span>
+                        <span class="tag">PyTorch</span>
+                    </div>
+                </div>
 
-                        <p> I am currently employed as a R&D Scientist in corporate research at the <a href="https://www.zeiss.de/corporate/home.html"> Zeiss Group </a> and working on AI-driven computer vision and robotic perception technologies since November, 2023.</p>
-                        <p> Previously, I worked at the <a href="https://www.bmwgroup.com/en.html"> BMW Group </a> Research towards developing novel algorithms for active multi-modal sensing and perception for autonomous intelligent robots. Herein, I worked towards my <a href="https://theses.gla.ac.uk/85001/2/2024MuraliPhD.pdf"> Ph.D. thesis </a> affiliated with
-                            the <a href="https://www.gla.ac.uk/"> University of Glasgow</a>. 
-                        </p>
-
-                        <p>
-                            I have also worked as a robotics engineer at the <a href="https://iit.it/">Italian Institute of
-                            Technology</a> from 2018 to 2020.
-                            Here, I worked in a joint lab with <a href="https://www.dca.it/en/">Danieli Automation</a>
-                            towards robotization of a safety-critical task in the steel industry. 
-                        </p>
-                        <p>
-                            I obtained my Master of Science (M.S.) degree with highest distinction in the <a
-                                href="https://master-emaro.ec-nantes.fr/">European Masters on Advanced Robotics
-                            (EMARO+)</a>, an Erasmus Mundus Master’s program at
-                            <a href="https://www.ec-nantes.fr/">Ecole Centrale de Nantes</a>, France and <a
-                                href="https://unige.it/it/">University of Genova</a>, Italy.
-                            I earned my bachelor's degree (B.Tech.) in engineering with highest distinctions from the <a
-                                href="https://www.nitt.edu/">National Institute of Technology Tiruchirappalli</a>,
-                            India.
-                        <p>
-                            <p>I have a strong background with C++/ Python, ROS and ML frameworks (Tensorflow/ PyTorch) and computer vision libraries (PCL, OpenCV).
-  </p>
-                            <strong> Expertise: </strong> Robotics / deep learning / multi-modal perception / point
-                            cloud registration / 3D
-                            reconstruction / robot-sensor calibration / 3D computer vision / tactile sensing
-
-
-                        </p>
-                        <strong> Disclaimer: </strong> This is my personal website and opinions presented here are my
-                        own and do not reflect the views of my employers.
-                        <p>
-
-                        </p>
-                        <p style="text-align:center">
-                            <a href="https://scholar.google.com/citations?user=8W7cVy4AAAAJ&hl=en">Google Scholar</a>
-                            &nbsp/&nbsp
-                            <a href="https://www.linkedin.com/in/prajval-kumar-murali/">LinkedIn</a> 
-                        </p>
-                    </td>
-                    <td style="padding:2.5%;width:40%;max-width:40%">
-                        <a href="images/image.png"><img style="width:100%;max-width:100%" alt="profile photo"
-                                                                  src="images/image.png"
-                                                                  class="hoverZoomLink"></a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <!-- NEWS -->
-<!--            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">-->
-<!--                <tbody>-->
-<!--                <tr>-->
-<!--                    <td style="padding:20px;width:100%;vertical-align:middle">-->
-<!--                        <h2>News</h2>-->
-<!--                        <p>-->
-<!--                            <strong>[Feb, 2023]</strong> New paper on "GMCR: Graph-based Maximum Consensus Estimation-->
-<!--                            for Point Cloud Registration" has been accepted to IEEE ICRA 2023 </a>-->
-<!--                        </p>-->
-<!--                        <p><strong>[July, 2022]</strong> Our paper wins best paper award at IEEE FLEPS 2022  </a>-->
-<!--                        </p>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr>
-                    <td style="padding:20px;width:100%;vertical-align:middle">
-                        <h2>Awards</h2>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <!-- AWARDs -->
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr>
-                    <td style="padding:20px;width:50%;vertical-align:middle">
-                        <img style="max-height:200px;max-width:500px" src="images/best-paper-award-new.png" class="center">
-                    </td>
-                    <td style="padding:20px;width:50%;vertical-align:middle">
-                        <!-- Add the second image here -->
-                        <img style="max-height:200px;max-width:500px" src="images/ICRA_award.png" class="center">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-
-
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr>
-                    <td style="padding:20px;width:100%;vertical-align:middle">
-                        <h2>Active Multi-Modal Pose Estimation</h2>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-
-                                        <!-- IJRR -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/ijrr.jpg"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>A Shared Visuo-Tactile Interactive Perception for Robust Object Pose Estimation
-                        </papertitle>
-                        <br>
-                        <u><strong>Prajval Kumar Murali</strong></u>, Bernd Porr, Mohsen Kaboli
-                        <br>
-                        <em>International Journal of Robotics Research (IJRR)</em>
-                        <br>
-                        <a href="https://journals.sagepub.com/doi/abs/10.1177/02783649241301443">[paper]</a><a
-                            href="https://journals.sagepub.com/doi/abs/10.1177/02783649241301443#supplementary-materials">[video]</a>
-                    </td>
-                </tr>
-
-
-                    <!-- ICRA-RA-L 2022 -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/ral-icra.gif"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>Active Visuo-Tactile Interactive Robotic Perception for Accurate Object Pose
-                            Estimation in Dense Clutter
-                        </papertitle>
-                        <br>
-                        <u><strong>Prajval Kumar Murali</strong></u>, Anirvan Dutta, Michael Gentner, Etienne Burdet,
-                        Ravinder Dahiya and Mohsen Kaboli
-                        <br>
-                        <em>IEEE Robotics and Automation Letters (IEEE RA-L)</em>
-                        <br>
-                        <a href="https://ieeexplore.ieee.org/abstract/document/9709520">[paper]</a><a
-                            href=" https://youtu.be/sjqWRFLL2Xw">[video]</a>
-                    </td>
-                </tr>
-
-                <!-- IROS 2021 -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/iros_website.gif"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>Active Visuo-Tactile Point Cloud Registration for Accurate Pose Estimation of
-                            Objects in an Unknown Workspace
-                        </papertitle>
-                        <br>
-                        <u><strong>Prajval Kumar Murali</strong></u>, Michael Gentner, and Mohsen Kaboli
-                        <br>
-                        <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2021</em>
-                        <br>
-                        <a href="https://ieeexplore.ieee.org/document/9636877">[paper]</a> <a
-                            href="https://youtu.be/Pu0Ghjlff7Q">[video]</a>
-                    </td>
-                </tr>
-
-                <!-- FLEPS 2022 -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/bunny_sim_final (1).png"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>An Empirical Evaluation of Various Information Gain Criteria for Active Tactile
-                            Action Selection for Pose Estimation
-                        </papertitle>
-                        <br>
-                        <u><strong>Prajval Kumar Murali</strong></u>, Ravinder Dahiya and Mohsen Kaboli
-                        <br>
-                        <em>The IEEE Int. Conf on Flexible and Printable Sensors and Systems (FLEPS 2022)</em>
-                        <br>
-                        <a href="https://ieeexplore.ieee.org/document/9781598">[paper]</a>
-                        <br>
-                        <strong style="color:red;">Best Paper Award Winner</strong>
-                    </td>
-                </tr>
-
-                <!-- ICRA 2023 -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/icra_23.gif"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>GMCR: Graph-based Maximum Consensus Estimation for Point Cloud Registration
-                        </papertitle>
-                        <br>
-                        Michael Gentner, <u><strong>Prajval Kumar Murali</strong></u>, and Mohsen Kaboli
-                        <br>
-                        <em>The IEEE International Conference on Robotics and Automation (ICRA 2023)</em>
-                        <br>
-                        <a href="https://arxiv.org/abs/2303.04032">[paper]</a>
-                        <br>
-                        <strong style="color:red;" href="https://www.icra2023.org/awards-finalists">Best Paper Award Finalist</strong>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr>
-                    <td style="padding:20px;width:100%;vertical-align:middle">
-                        <h2>Active Multi-Modal Reconstruction</h2>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <!-- IROS 2023-->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/iros23.gif"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>Touch if it’s transparent! ACTOR: Active Tactile-based Category-Level Transparent Object Reconstruction
-                        </papertitle>
-                        <br>
-                        <u><strong>Prajval Kumar Murali</strong></u>, Bernd Porr and
-                        Mohsen Kaboli
-                        <br>
-                        <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2023</em>
-                        <br>
-                        <br>
-                        <a href="https://arxiv.org/abs/2307.16254">[paper]</a>
-                        <br>
-                    </td>
-                </tr>
-
-            </table>
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr>
-                    <td style="padding:20px;width:100%;vertical-align:middle">
-                        <h2>Robust Cross-Modal Perception</h2>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <!-- IROS-RA-L 2022 -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/ral_iros22.gif"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>Deep Active Cross-Modal Visuo-Tactile Transfer Learning for Robotic Object
-                            Recognition
-                        </papertitle>
-                        <br>
-                        <u><strong>Prajval Kumar Murali</strong></u>, Cong Wang, Dongheui Lee, Ravinder Dahiya and
-                        Mohsen Kaboli
-                        <br>
-                        <em>IEEE Robotics and Automation Letters (IEEE RA-L)</em>
-                        <br>
-                        <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9830870">[paper]</a>
-                    </td>
-                </tr>
-
-
-                <!-- FLEPS 2022 -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/fig1.png"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>Towards Robust 3D Object Recognition with Dense-to-Sparse Deep Domain Adaptation
-                        </papertitle>
-                        <br>
-                        <u><strong>Prajval Kumar Murali</strong> </u>, Cong Wang, Ravinder Dahiya and Mohsen Kaboli
-                        <br>
-                        <em>The IEEE Int. Conf on Flexible and Printable Sensors and Systems (FLEPS 2022)</em>
-                        <br>
-                        <a href="https://ieeexplore.ieee.org/document/9781490">[paper]</a>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr>
-                    <td style="padding:20px;width:100%;vertical-align:middle">
-                        <h2>Human-Robot/ Human-Vehicle Collaboration</h2>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-
-
-                <!-- AIS -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/figure1_new.png"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>Intelligent In-Vehicle Interaction Technologies</papertitle>
-                        <br>
-                        <u><strong>Prajval Kumar Murali</strong> </u>, Mohsen Kaboli, and Ravinder Dahiya
-                        <br>
-                        <em>Advanced Intelligent Systems</em>
-                        <br>
-                        <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/aisy.202100122">[paper]</a>
-                    </td>
-                </tr>
-
-                <!-- JIST 2020 -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/jist.gif"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>Deployment and Evaluation of a Flexible Human-Robot Collaboration Model Based on
-                            AND/OR Graphs in a Manufacturing Environment
-                        </papertitle>
-                        <br>
-                        <u><strong>Prajval Kumar Murali</strong></u>, Kourosh Darvish, Fulvio Mastrogiovanni
-                        <br>
-                        <em>Springer Journal of Intelligent Service Robotics (JIST)</em>
-                        <br>
-                        <a href="https://link.springer.com/article/10.1007/s11370-020-00332-9">[paper]</a><a
-                            href="https://www.youtube.com/watch?v=mF22PPmwHN0&feature=youtu.be">[video]</a><a
-                            href="https://github.com/EmaroLab/industrialRobot_task_planning">[code]</a>
-                    </td>
-                </tr>
-
-                <!-- ETFA 2020 -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/etfa_new.png"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>A Flexible Software Architecture for Robotic Industrial Applications</papertitle>
-                        <br>
-                        Angelo Rendiniello, Alberto Remus, Ines Sorrentino,<u><strong> Prajval Kumar
-                        Murali </strong></u>, Daniele Pucci, Marco Maggiali, Lorenzo Natale, Enrico Villagrossi, Andrea
-                        Polo, Alessandro Ardesi, Silvio Traversaro
-                        <br>
-                        <em>IEEE International Conference on Emerging Technologies and Factory Automation, ETFA
-                            2020</em>
-                        <br>
-                        <a href="https://ieeexplore.ieee.org/abstract/document/9212095">[paper]</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr>
-                    <td style="padding:20px;width:100%;vertical-align:middle">
-                        <h2>Multi-Modal Sensor Calibration</h2>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <!-- ICRA 2021 -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/icub.png"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>In Situ Translational Hand-Eye Calibration of Laser Profile Sensors using Arbitrary
-                            Objects
-                        </papertitle>
-                        <br>
-                        <u><strong>Prajval Kumar Murali</strong></u>, Ines Sorrentino, Angelo Rendiniello, Claudio
-                        Fantacci, Enrico Villagrossi, Andrea Polo, Alessandro Ardesi, Marco Maggiali, Lorenzo Natale,
-                        Daniele Pucci, Silvio Traversaro
-                        <br>
-                        <em>IEEE International Conference on Robotics and Automation, ICRA 2021</em>
-                        <br>
-                        <a href="https://ieeexplore.ieee.org/iel7/9560720/9560666/09561055.pdf">[paper]</a>
-                    </td>
-                </tr>
-
-                <!-- IROS 2015 -->
-                <tr onmouseout="font_stop()" onmouseover="font_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle"><img
-                            style="max-height:180px;max-width:180px" src="images/iros.gif"></td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
-                        <papertitle>Active calibration of tactile sensors mounted on a robotic hand</papertitle>
-                        <br>
-                        Benjamin Navarro, <u><strong>Prajval Kumar Murali </strong></u>, Aicha Fonte, Philippe Fraisse,
-                        Gérard Poisson, Andrea Cherubini
-                        <br>
-                        <em>IEEE/RSJ Intelligent RObots and Systems IROS 2015, Workshop on Multimodal sensor-based robot
-                            control for HRI and soft manipulation</em>
-                        <br>
-                        <a href="https://hal-lirmm.ccsd.cnrs.fr/lirmm-01247148/document">[paper]</a><a
-                            href="https://www.youtube.com/watch?v=kJm6jaVxBlI">[video]</a>
-                        <br>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-
-            <!-- Courtesy -->
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                <tbody>
-                <tr>
-                    <td style="padding:0px">
-                        <p style="text-align:right;font-size:small;">
-                            Website by the courtesy of <a href="https://jonbarron.info/">Jon Barron</a>.
-                        </p>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-</table>
+                <div class="social-links">
+                    <a href="https://scholar.google.com/citations?user=8W7cVy4AAAAJ&hl=en" class="social-btn">Google Scholar</a>
+                    <a href="https://www.linkedin.com/in/prajval-kumar-murali/" class="social-btn">LinkedIn</a>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <img src="images/image.png" alt="Prajval Kumar Murali">
+            </div>
+        </section>
+        
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> This is my personal website and opinions presented here are my own and do not reflect the views of my employers.
+        </div>
+        
+        <!-- Awards Section -->
+        <section class="awards-section">
+            <h2 class="section-title">Awards & Recognition</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <img src="images/best-paper-award-new.png" alt="Best Paper Award">
+                </div>
+                <div class="award-card">
+                    <img src="images/ICRA_award.png" alt="ICRA Award">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Active Multi-Modal Pose Estimation -->
+        <section class="research-section">
+            <h2 class="section-title">Robotic Perception - Vision & Tactile Sensing</h2>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/ijrr.jpg" alt="IJRR Paper">
+                </div>
+                <div class="paper-content">
+                    <h3>A Shared Visuo-Tactile Interactive Perception for Robust Object Pose Estimation</h3>
+                    <div class="paper-authors"><strong>Prajval Kumar Murali</strong>, Bernd Porr, Mohsen Kaboli</div>
+                    <div class="paper-venue">International Journal of Robotics Research (IJRR)</div>
+                    <div class="paper-links">
+                        <a href="https://journals.sagepub.com/doi/abs/10.1177/02783649241301443" class="paper-link">Paper</a>
+                        <a href="https://journals.sagepub.com/doi/abs/10.1177/02783649241301443#supplementary-materials" class="paper-link">Video</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/ral-icra.gif" alt="RAL ICRA">
+                </div>
+                <div class="paper-content">
+                    <h3>Active Visuo-Tactile Interactive Robotic Perception for Accurate Object Pose Estimation in Dense Clutter</h3>
+                    <div class="paper-authors"><strong>Prajval Kumar Murali</strong>, Anirvan Dutta, Michael Gentner, Etienne Burdet, Ravinder Dahiya, Mohsen Kaboli</div>
+                    <div class="paper-venue">IEEE Robotics and Automation Letters (RA-L)</div>
+                    <div class="paper-links">
+                        <a href="https://ieeexplore.ieee.org/abstract/document/9709520" class="paper-link">Paper</a>
+                        <a href="https://youtu.be/sjqWRFLL2Xw" class="paper-link">Video</a>
+                    </div>
+                </div>
+            </div>
+            
+                <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/ral_iros22.gif" alt="RAL IROS 2022">
+                </div>
+                <div class="paper-content">
+                    <h3>Deep Active Cross-Modal Visuo-Tactile Transfer Learning for Robotic Object Recognition</h3>
+                    <div class="paper-authors"><strong>Prajval Kumar Murali</strong>, Cong Wang, Dongheui Lee, Ravinder Dahiya, Mohsen Kaboli</div>
+                    <div class="paper-venue">IEEE Robotics and Automation Letters (RA-L)</div>
+                    <div class="paper-links">
+                        <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9830870" class="paper-link">Paper</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/iros_website.gif" alt="IROS 2021">
+                </div>
+                <div class="paper-content">
+                    <h3>Active Visuo-Tactile Point Cloud Registration for Accurate Pose Estimation of Objects in an Unknown Workspace</h3>
+                    <div class="paper-authors"><strong>Prajval Kumar Murali</strong>, Michael Gentner, Mohsen Kaboli</div>
+                    <div class="paper-venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2021</div>
+                    <div class="paper-links">
+                        <a href="https://ieeexplore.ieee.org/document/9636877" class="paper-link">Paper</a>
+                        <a href="https://youtu.be/Pu0Ghjlff7Q" class="paper-link">Video</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/bunny_sim_final (1).png" alt="FLEPS 2022">
+                </div>
+                <div class="paper-content">
+                    <h3>An Empirical Evaluation of Various Information Gain Criteria for Active Tactile Action Selection for Pose Estimation</h3>
+                    <div class="paper-authors"><strong>Prajval Kumar Murali</strong>, Ravinder Dahiya, Mohsen Kaboli</div>
+                    <div class="paper-venue">IEEE Int. Conf on Flexible and Printable Sensors and Systems (FLEPS 2022)</div>
+                    <div class="paper-links">
+                        <a href="https://ieeexplore.ieee.org/document/9781598" class="paper-link">Paper</a>
+                    </div>
+                    <span class="award-badge">🏆 Best Paper Award</span>
+                </div>
+            </div>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/icra_23.gif" alt="ICRA 2023">
+                </div>
+                <div class="paper-content">
+                    <h3>GMCR: Graph-based Maximum Consensus Estimation for Point Cloud Registration</h3>
+                    <div class="paper-authors">Michael Gentner, <strong>Prajval Kumar Murali</strong>, Mohsen Kaboli</div>
+                    <div class="paper-venue">IEEE International Conference on Robotics and Automation (ICRA 2023)</div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2303.04032" class="paper-link">Paper</a>
+                    </div>
+                    <span class="award-badge">🏆 Best Paper Award Finalist</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Active Multi-Modal Reconstruction -->
+        <section class="research-section">
+            <h2 class="section-title">3D Object Reconstruction</h2>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/iros23.gif" alt="IROS 2023">
+                </div>
+                <div class="paper-content">
+                    <h3>Touch if it's transparent! ACTOR: Active Tactile-based Category-Level Transparent Object Reconstruction</h3>
+                    <div class="paper-authors"><strong>Prajval Kumar Murali</strong>, Bernd Porr, Mohsen Kaboli</div>
+                    <div class="paper-venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2023</div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2307.16254" class="paper-link">Paper</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        <!-- Human-Robot Collaboration -->
+        <section class="research-section">
+            <h2 class="section-title">Human-Robot Collaboration</h2>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/figure1_new.png" alt="AIS">
+                </div>
+                <div class="paper-content">
+                    <h3>Intelligent In-Vehicle Interaction Technologies</h3>
+                    <div class="paper-authors"><strong>Prajval Kumar Murali</strong>, Mohsen Kaboli, Ravinder Dahiya</div>
+                    <div class="paper-venue">Advanced Intelligent Systems</div>
+                    <div class="paper-links">
+                        <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/aisy.202100122" class="paper-link">Paper</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/jist.gif" alt="JIST 2020">
+                </div>
+                <div class="paper-content">
+                    <h3>Deployment and Evaluation of a Flexible Human-Robot Collaboration Model Based on AND/OR Graphs in a Manufacturing Environment</h3>
+                    <div class="paper-authors"><strong>Prajval Kumar Murali</strong>, Kourosh Darvish, Fulvio Mastrogiovanni</div>
+                    <div class="paper-venue">Springer Journal of Intelligent Service Robotics (JIST)</div>
+                    <div class="paper-links">
+                        <a href="https://link.springer.com/article/10.1007/s11370-020-00332-9" class="paper-link">Paper</a>
+                        <a href="https://www.youtube.com/watch?v=mF22PPmwHN0&feature=youtu.be" class="paper-link">Video</a>
+                        <a href="https://github.com/EmaroLab/industrialRobot_task_planning" class="paper-link">Code</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/etfa_new.png" alt="ETFA 2020">
+                </div>
+                <div class="paper-content">
+                    <h3>A Flexible Software Architecture for Robotic Industrial Applications</h3>
+                    <div class="paper-authors">Angelo Rendiniello, Alberto Remus, Ines Sorrentino, <strong>Prajval Kumar Murali</strong>, Daniele Pucci, Marco Maggiali, Lorenzo Natale, Enrico Villagrossi, Andrea Polo, Alessandro Ardesi, Silvio Traversaro</div>
+                    <div class="paper-venue">IEEE International Conference on Emerging Technologies and Factory Automation (ETFA 2020)</div>
+                    <div class="paper-links">
+                        <a href="https://ieeexplore.ieee.org/abstract/document/9212095" class="paper-link">Paper</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Multi-Modal Sensor Calibration -->
+        <section class="research-section">
+            <h2 class="section-title">Sensor Calibration</h2>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/icub.png" alt="ICRA 2021">
+                </div>
+                <div class="paper-content">
+                    <h3>In Situ Translational Hand-Eye Calibration of Laser Profile Sensors using Arbitrary Objects</h3>
+                    <div class="paper-authors"><strong>Prajval Kumar Murali</strong>, Ines Sorrentino, Angelo Rendiniello, Claudio Fantacci, Enrico Villagrossi, Andrea Polo, Alessandro Ardesi, Marco Maggiali, Lorenzo Natale, Daniele Pucci, Silvio Traversaro</div>
+                    <div class="paper-venue">IEEE International Conference on Robotics and Automation (ICRA 2021)</div>
+                    <div class="paper-links">
+                        <a href="https://ieeexplore.ieee.org/iel7/9560720/9560666/09561055.pdf" class="paper-link">Paper</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="paper-card">
+                <div class="paper-image">
+                    <img src="images/iros.gif" alt="IROS 2015">
+                </div>
+                <div class="paper-content">
+                    <h3>Active calibration of tactile sensors mounted on a robotic hand</h3>
+                    <div class="paper-authors">Benjamin Navarro, <strong>Prajval Kumar Murali</strong>, Aicha Fonte, Philippe Fraisse, Gérard Poisson, Andrea Cherubini</div>
+                    <div class="paper-venue">IEEE/RSJ Intelligent Robots and Systems (IROS 2015), Workshop on Multimodal sensor-based robot control for HRI and soft manipulation</div>
+                    <div class="paper-links">
+                        <a href="https://hal-lirmm.ccsd.cnrs.fr/lirmm-01247148/document" class="paper-link">Paper</a>
+                        <a href="https://www.youtube.com/watch?v=kJm6jaVxBlI" class="paper-link">Video</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </div>
 </body>
-
-
 </html>
